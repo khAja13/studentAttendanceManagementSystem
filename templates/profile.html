@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0" />
+    <title>Admin panel</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='/styleProfile.css') }}" type="text/css" /> -->
+    <link rel="stylesheet" href="../static/style.css">
+
+</head>
+
+<body>
+    <div class="Navbar">
+        <div class="navbarText">
+            Welcome back admin &nbsp; <span> {{ session['adminid'].get('two') }} </span>
+        </div>
+        <div class="navbarLogout">
+            <form action="{{ url_for('flaskBro') }}" enctype="multipart/form-data">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
+    <div class="middle">
+        <div class="content">
+            <div class="card-box">
+                <div class="forfileupload">
+                    <form class="forform" action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <div><label>Enter the file to upload</label></div>
+                            <input type="file" class="form-control" accept=".csv" name="csv"
+                                placeholder="Upload a file">
+                            <div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="sectionsList">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni, ullam.
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="foot">
+            Made with <span style="margin-left: 5px; margin-right: 5px;"> ❤ </span> by team
+        </div>
+    </footer>
+</body>
+
+</html>

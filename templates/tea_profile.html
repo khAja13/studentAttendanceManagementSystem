@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0" />
+    <title>Teacher panel</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styleProfile.css') }}" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body style="background-color: whitesmoke;">
+    <div class="Navbar" id="Navbar">
+        <div class="navbarText">
+            Welcome back teacher &nbsp; <span style="color: green;"> {{ session['teaid'].get('two') }} </span>
+        </div>
+        <div class="navbarLogout">
+            <form action="{{ url_for('flaskBro') }}" enctype="multipart/form-data" method="POST">
+                <button type="submit">Logout</button>
+                <input type="text" name="from" value="teaid" style="display: none">
+                <input type="text" name="togo" value="teacher" style="display: none">
+            </form>
+        </div>
+    </div>
+    <div class="teamid" id="teamid" style="display: flex; flex-direction: column; background-color: whitesmoke;">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="alert" style="background-color: rgb(243, 243, 12);">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <script>
+            window.setTimeout(function () {
+                $(".alert").remove()
+            }, 4000);
+        </script>
+        
+        <h3 style="margin-left: 5px;">All details</h3>
+        {% if allSections %}
+            {% for values in allSections %}
+            <div style="display: flex; margin-bottom: 10px;">
+                <form action="{{url_for('sec_att')}}" enctype="multipart/form-data" method="POST">
+                    <input type="text" name="section" value={{values.section}} style="display: none">
+                    <input type="text" name="course" value={{values.course}} style="display: none">
+                    <button type="submit" name="forSection" style="margin-left: 10px; border: 2px solid rebeccapurple;"
+                        value={{values.section}}>Semester {{values.section}} {{values.course}}</button>
+                </form>
+                <form action="{{url_for('start_att')}}" style="margin-left: 12px;" enctype="multipart/form-data"
+                    method="POST">
+                    <input type="text" name="section" value={{values.section}} style="display: none">
+                    <input type="text" name="course" value={{values.course}} style="display: none">
+                    <input type="text" name="teaname" value={{session['teaid'].get('two')}} style="display: none">
+                    <button type="submit" style="border: 2px solid rebeccapurple;">Start attendance for this
+                        subject</button>
+                </form>
+            </div>
+            {% endfor %}
+        {% endif %}
+
+
+    </div>
+
+
+
+    <footer>
+        <div class="foot">
+            Made with<span style="margin-left: 5px; margin-right: 5px;">❤</span>by team
+        </div>
+    </footer>
+</body>
+
+</html>

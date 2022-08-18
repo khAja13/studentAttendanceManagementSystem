@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0" />
+    <title>Admin panel</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styleProfile.css') }}" type="text/css" />
+    <!-- <link rel="stylesheet" href="../static/style.css"> -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <style>
+        div#loading {
+            height: 100vh;
+            width: 100vw;
+            background-color: black;
+            cursor: wait;
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body style="background-color: whitesmoke;">
+
+    <div class="Navbar" id="Navbar">
+        <div class="navbarText" style="background-color:#FAD0C9FF  ">
+            Welcome back admin &nbsp; <span style="color: green;"> {{ session['adminid'].get('two') }} </span>
+        </div>
+        <div class="navbarLogout" style="background-color: #FAD0C9FF  ;">
+            <form action="{{ url_for('flaskBro') }}" enctype="multipart/form-data" method="POST">
+                <input type="text" name="from" value="adminid" style="display: none">
+                <input type="text" name="togo" value="admin" style="display: none">
+                <button type="submit" onclick="loading()">Logout</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="middle" id="middle" style="margin-top: 50px; background-color: whitesmoke;">
+        <div class="content">
+            <div class="card-box" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; background-color:whitesmoke;">
+                <div class="forfileupload">
+
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                {% if message == 'Teacher details were added successfully' %}
+                                    <p class="alert" style="background-color:green; margin-top:20px;">{{ message }}</p>
+                                {% elif message == 'File was uploaded successfully' %}
+                                    <p class="alert" style="background-color:green; margin-top:20px;">{{ message }}</p>
+                                {% else %}
+                                    <p class="alert" style="background-color:rgb(203, 44, 44); margin-top:20px;">{{ message }}</p>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                    <script>
+                        window.setTimeout(function () {
+                            $(".alert").remove()
+                        }, 4000);
+                    </script>
+
+
+                    <h2>Add student details</h2>
+                    <form class="forform" action="{{ url_for('upload_file') }}" method="post"
+                        enctype="multipart/form-data">
+                        <div class="">
+                            <div><label>Enter the file to upload</label></div>
+                            <input type="file" class="form-control" accept=".csv" name="csv"
+                                placeholder="Upload a file">
+                            <div style="margin-top: 10px;">
+                                <label for="section">Select section</label>
+                                <select name="section" id="section">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label>Upload the student images</label>
+                                <input style="margin-left: 20px;" type="file" name="imagesfile" id="files" multiple
+                                    directory="" webkitdirectory="" moxdirectory="" />
+                            </div>
+
+                            <div style="margin-bottom: 10px;">
+                                <button type="submit" class="btn btn-primary" style="margin-top: 15px;">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="sectionsList">
+                    <h2>Add teacher details</h2>
+                    <form class="" action="{{ url_for('add') }}" method="post" enctype="multipart/form-data">
+                        <div style="display: inline-block;">
+                            <label style="margin-left: 25px;">Enter the faculty uid</label>
+                            <input name="uid" type="text" class="form-control" placeholder="Enter the faculty uid">
+                        </div>
+                        <div style="display: inline-block; margin-left: 10px;">
+                            <label style="margin-left: 25px;">Enter the faculty name</label>
+                            <input name="name" type="text" class="form-control" placeholder="Enter the faculty name">
+                        </div>
+                        <div style="display: inline-block; margin-left: 10px;">
+                            <label style="margin-left: 25px;">Enter the faculty course</label>
+                            <input name="course" type="text" class="form-control"
+                                placeholder="Enter the faculty course">
+                        </div>
+                        <div style="display: inline-block; margin-left: 10px;">
+                            <label style="margin-left: 25px;">Enter the faculty section</label>
+                            <input name="section" type="text" class="form-control"
+                                placeholder="Enter the faculty section">
+                        </div>
+                        <div style="display: inline-block; margin-left: 10px;">
+                            <label style="margin-left: 25px;">Enter the course id</label>
+                            <input name="courseid" type="text" class="form-control" placeholder="Enter the course id">
+                        </div>
+                        <br>
+                        <button style="display: block; margin-top: 10px; margin-left: 20px;" type="submit"
+                            class="btn btn-primary">Submit</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <footer>
+        <div class="foot" id="foot" style="background-color: #6E6E6DFF;">
+            Made with <span style="margin-left: 5px; margin-right: 5px;"> ❤ </span> by team
+        </div>
+    </footer>
+</body>
+
+</html>

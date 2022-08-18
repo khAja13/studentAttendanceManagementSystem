@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0" />
+    <title>Teacher panel</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styleProfile.css') }}" type="text/css" />
+    <!-- <link rel="stylesheet" href="../static/style.css"> -->
+
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 5px;
+            text-align: left;
+        }
+
+        table#t01 {
+            width: 100%;
+            background-color: #f2f2d1;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="Navbar">
+        <div class="navbarText" style="position:relative;">
+            <form action="{{ url_for('teacher_login_page') }}" enctype="multipart/form-data" method="POST" style="position: absolute; left: 10px;">
+                <button type="submit"> &#8592 Profile</button>
+            </form>
+            Welcome back teacher &nbsp; <span style="color: green;"> {{ session['teaid'].get('two') }} </span>
+        </div>
+        <div class="navbarLogout">
+            <form action="{{ url_for('flaskBro') }}" enctype="multipart/form-data" method="POST">
+                <button type="submit">Logout</button>
+                <input type="text" name="from" value="teaid" style="display: none">
+                <input type="text" name="togo" value="teacher" style="display: none">
+            </form>
+        </div>
+    </div>
+    
+    <div class="teamid" style="background-color: whitesmoke; padding: 2rem;">
+        <form action="{{ url_for('show_att') }}" method="POST" enctype="multipart/form-data">
+            <input type="date" name="date">
+            <input type="text" name="courseid" value={{courseid}} style="display: none;">
+            <input type="text" name="section" value={{section}} style="display: none;">
+            <button>Get attendance</button>
+        </form>
+        <form action="{{ url_for('sec_att') }}" method="POST" enctype="multipart/form-data">
+            <input type="text" name="courseid" value={{courseid}} style="display: none;">
+            <input type="text" name="forSection" value={{section}} style="display: none;">
+            <button style="margin-top: 5px; border: 2px solid rebeccapurple;">Full attendance</button>
+        </form>
+        <div id="forfull" style="margin-top: 5px;">
+            <div id="forfull">
+                <h3>Attendance on {{date}}</h3>
+                    {% if isData == True %}
+                        <table id="table">
+                            <thead>
+                                <tr>
+                                    <th>UID</th>
+                                    <th>NAME</th>
+                                    <th>{{date}}</th>
+                                    <th>SECTION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for values in result %}
+                                    <tr>
+                                        {% for val in values %}
+                                            <td>{{val}}</td>
+                                        {% endfor %}
+                                        <td>{{section}}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <button onclick="exportData()" style="margin-top: 15px; border: 2px solid rebeccapurple;">Download attendance</button>
+                    {% else %}
+                        <h5>Attendance was not taken for this section on this day.</h5>
+                    {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var da = '{{date}}'
+        function exportData() {
+            var table = document.getElementById('table')
+            var rows = []
+            for (var i = 0, row; row = table.rows[i]; i++) {
+                column1 = row.cells[0].innerText;
+                column2 = row.cells[1].innerText;
+                column3 = row.cells[2].innerText;
+                column4 = row.cells[3].innerText;
+                rows.push( [ column1, column2, column3, column4 ] );
+            }
+            csvContent = "data:text/csv;charset=utf-8,";
+            var link;
+            rows.forEach(function (rowArray) {
+                row = rowArray.join(",");
+                csvContent += row + "\r\n";
+                var encodedUri = encodeURI(csvContent);
+                link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                var sectionis = '{{section}}'
+                link.setAttribute("download", `attendance_${sectionis}_${da}.csv`);
+                document.body.appendChild(link);
+            });
+            link.click();
+        }
+    </script>
+
+    <footer>
+        <div class="foot">
+            Made with <span style="margin-left: 5px; margin-right: 5px;"> ❤ </span> by team
+        </div>
+    </footer>
+</body>
+
+</html>

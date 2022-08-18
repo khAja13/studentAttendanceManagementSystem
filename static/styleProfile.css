@@ -1,0 +1,130 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	height: 100vh;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+}
+
+.Navbar {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	height: 3rem;
+	grid-area: "nav";
+}
+
+.navbarText {
+	background-color: rgb(171, 236, 215);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: large;
+}
+
+.navbarLogout {
+	background-color: rgb(171, 236, 215);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 5rem;
+	border-left: 1px solid whitesmoke;
+	cursor: pointer;
+}
+
+button {
+	border-radius: 50px;
+	font-size: large;
+	padding: 0.3rem 0.5rem;
+	border: none;
+}
+
+.navbarLogout:hover {
+	background-color: whitesmoke;
+}
+button:hover {
+	cursor: pointer;
+}
+
+button:focus {
+	outline: none;
+}
+
+span {
+	color: red;
+}
+
+.middle {
+	background-color: rgb(160, 145, 145);
+	grid-area: "middle";
+	overflow-x: auto;
+	padding: 0.5rem;
+}
+
+.teamid{
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; 
+	background-color:whitesmoke;
+	margin: auto;
+	height:80vh;
+	width:90vw;
+	overflow:auto;
+}
+
+.content {
+	background-color: papayawhip;
+	width: 90vw;
+	margin: auto;
+}
+
+.card-box {
+	padding: 0.5rem;
+}
+
+.forform {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+label {
+	width: max-content;
+}
+
+.form-group {
+	width: 60vw;
+	padding: 1rem;
+	display: flex;
+	align-items: center;
+}
+
+.form-control {
+	margin-inline: 1rem;
+}
+
+.btn {
+	height: inherit;
+}
+
+.sectionsList {
+	border-top: 2px solid palevioletred;
+}
+
+footer {
+	width: 100vw;
+	grid-area: "foot";
+}
+.foot {
+	text-align: center;
+	padding: 0.5rem;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	/* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+		rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; */
+	background-color: #232931;
+	color: white;
+}

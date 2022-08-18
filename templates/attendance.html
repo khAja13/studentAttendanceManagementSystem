@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance portal</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='/style.css') }}" type="text/css" />
+    <link rel="stylesheet" href="../static/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
+
+<body id="page">
+    <div class="Navbar">
+        <div class="navbar-text">
+            <p>Attendance portal</p>
+        </div>
+    </div>
+    {% if first == True %}
+        {% with messages = get_flashed_messages() %}  
+            {% if messages %}  
+                {% for message in messages %}  
+                        <p class="alert" style="background-color: red;">{{ message }}</p>  
+                {% endfor %}  
+            {% endif %}  
+        {% endwith %} 
+        <script>
+            window.setTimeout(function() {
+                $(".alert").remove()
+            }, 4000);
+        </script> 
+    {% endif %}
+    {% if first == True %}
+
+    <div class="Container"
+        style="width: 100%; height: 80.5vh; display: flex; flex-direction: column; justify-content: center; align-items: center; margin-bottom: 10px;">
+        <div class="card" style="border-radius: 8px; width: 50vw; margin: auto; height: auto;">
+            <div class="card-box" style="height: 62vh;">
+                <div class="form-image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNfERV4qdzn3SQW4gDbfomgIBCbY-p2QAxeg&usqp=CAU"
+                        alt="">
+                </div>
+                <div class="formbox">
+                    <h3>Select subject and section</h3>
+                    <div class="container-fluid">
+                        <form action="{{ url_for('attendance') }}" method="post" enctype="multipart/form-data">
+                            <label for="courses">Select course</label>
+                            <select name="course" id="course">
+                                <option value="MPMC">MPMC</option>
+                                <option value="CP">CP</option>
+                                <option value="NETWORKING">NETWORKING</option>
+                                <option value="CD">CD</option>
+                                <option value="UP">UP</option>
+                                <option value="COLLEGE">COLLEGE</option>
+                                <option value="DBMS">DBMS</option>
+                                <option value="ECE">ECE</option>
+                                <option value="OOPS">OOPS</option>
+                                <option value="DBMS">DBMS</option>
+                                <option value="OS">OS</option>
+                            </select>
+                            <div class="form-group" style="margin-top: 5%;"> 
+                                    <label for="section">Select section</label>
+                                    <select name="section" id="section">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                    </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <h1 id="tableis" style="display: none;">{{tableis}}</h1>
+    <h1 id="course" style="display: none;">{{course}}</h1>
+    <h1 id="section" style="display: none;">{{section}}</h1>
+    <div class="Container">
+        <div style="margin:5px 0px 90px 0px; height: 35rem; display: flex; flex-direction: column;">
+                <div style="display: flex; flex-direction: row;">
+                    <div class="card" style="width: 45vw; margin-top: 0; display: flex;">
+                        <div style="display:flex; align-items:center; justify-content:center; flex-direction: column;">
+                            <canvas id="canvas" class="canvas-wrapper"></canvas>
+                            <img src="" id="snap" alt="">
+                            <video id="video" width="600" height="500" autoplay></video>
+                            <button id="btn" style="margin-bottom: .8rem;">Pic of ID card</button>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 45vw; margin-top: 0; margin-left: 10%; display: flex;">
+                        <div style="display:flex; align-items:center; justify-content:center; flex-direction: column;">
+                            <canvas id="canvas1" class="canvas-wrapper"></canvas>
+                            <img src="" id="snap1" alt="">
+                            <video id="video1" width="600" height="500" autoplay></video>
+                            <button id="btn1" class="btn" style="margin-bottom: .8rem;">Pic of student</button>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="go()" style="border: none;">Take attendance</button>
+        </div>
+    </div>
+    
+    <script src="../static/main.js"></script>
+    <script src="{{url_for('static', filename='main.js')}}"></script>
+    {% endif %}
+
+    <footer>
+        <footer>
+            <div class="foot">
+                Made with <span style="margin-left: 5px; margin-right: 5px;"> ❤ </span> by team
+            </div>
+        </footer>
+</body>
+
+
+<style>
+    /*Hide canvas*/
+    #canvas {
+        display: none !important;
+    }
+    #canvas1 {
+        display: none ;
+    }
+</style>
+
+</html>
