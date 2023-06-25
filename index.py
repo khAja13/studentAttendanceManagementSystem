@@ -592,7 +592,7 @@ def capture_img():
             section = request.form['section']
 
             if msg == 'no':
-                return msg;
+                return msg
             cur = conn.cursor()
             adsaf = msg.split('.')[0]
             print(adsaf)

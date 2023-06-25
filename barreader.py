@@ -3,7 +3,7 @@ import cv2, base64, numpy as np
 from pyzbar.pyzbar import decode
 
 # Make one method to decode the barcode
-temp_path="K:\\Coding\\python\\review2\\fakebar.jpeg"
+temp_path="C:\\Users\\KHAJA\\Desktop\\university-project\\studentAttendanceManagementSystem\\fakebar.jpeg"
 def BarcodeReader(image):
 
 	img_binary = base64.b64decode(image)

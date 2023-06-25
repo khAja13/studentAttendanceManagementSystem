@@ -1,9 +1,10 @@
 from time import sleep
 import face_recognition, pickle, cv2, testing3_encoding, base64, numpy as np, os
 
-temp_path="K:\\Coding\\python\\review2\\fake.jpeg"
-uni_images="K:\\Coding\\python\\review2\\uploaded_files\\images"
-uni_encodings="K:\\Coding\\python\\review2\\face_enc"
+print(face_recognition, " adfadfasdfa asdsad fasdf as fasf asd as fasf")
+temp_path="C:\\Users\\KHAJA\\Desktop\\university-project\\studentAttendanceManagementSystem\\fake.jpeg"
+uni_images="C:\\Users\\KHAJA\\Desktop\\university-project\\studentAttendanceManagementSystem\\uploaded_files\\images"
+uni_encodings="C:\\Users\\KHAJA\Desktop\\university-project\\studentAttendanceManagementSystem\\face_enc"
 
 def save_img(img_base64, id):
     img_binary = base64.b64decode(img_base64)

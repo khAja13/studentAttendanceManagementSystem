@@ -1,7 +1,7 @@
 from imutils import paths
 import face_recognition, pickle, cv2, os
 
-uni_images="K:\\Coding\\python\\review2\\uploaded_files\\images"
+uni_images="C:\\Users\\KHAJA\\Desktop\\university-project\\studentAttendanceManagementSystem\\uploaded_files\\images"
 
 def go():
     imagePaths = os.listdir(uni_images)
