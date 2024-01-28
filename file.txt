@@ -5,3 +5,9 @@ $env:FLASK_DEBUG=1
 python -m flask run
 
 flask run --host=0.0.0.0
+
+
+python 3.11.6
+https://www.microsoft.com/en-US/download/details.aspx?id=40784
+https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false
+https://github.com/microsoftarchive/redis/releases/tag/win-3.0.504
