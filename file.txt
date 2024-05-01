@@ -11,3 +11,23 @@ python 3.11.6
 https://www.microsoft.com/en-US/download/details.aspx?id=40784
 https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false
 https://github.com/microsoftarchive/redis/releases/tag/win-3.0.504
+
+http://127.0.0.1:5000/admin
+Admin, 100 khaja khaja
+stores students data like this 
+20181CSE0653,KHAJA,10
+20181CSE0661,SHALINI,10
+20181CSE0666,SHIFA,10
+20181CSE0668,SHIVAKUMAR,10
+20181CSE0718,SUMUKH,10
+and their images as their id's itself
+and creates a teacher and assign to a particular subject of particular section
+
+http://127.0.0.1:5000/login_student
+Student can login and download their attendance
+
+http://127.0.0.1:5000/teacher
+Teacher can download his/her section's attendance and start the attendance
+
+http://127.0.0.1:5000/check_att
+Student needs to select their subject and section to take attendance
