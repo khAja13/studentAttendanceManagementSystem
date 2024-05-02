@@ -23,7 +23,7 @@ stores students data like this
 and their images as their id's itself
 and creates a teacher and assign to a particular subject of particular section
 
-http://127.0.0.1:5000/login_student
+http://127.0.0.1:5000
 Student can login and download their attendance
 
 http://127.0.0.1:5000/teacher
